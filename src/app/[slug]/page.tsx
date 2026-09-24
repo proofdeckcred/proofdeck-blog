@@ -165,7 +165,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="mb-8 flex items-center justify-between">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-[#4A3AA8] transition-colors no-underline"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-[#5B4CF5] transition-colors no-underline"
             >
               <ArrowLeft size={14} /> Back to Guides & Articles
             </Link>
@@ -205,7 +205,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {/* Author Card Bar */}
             <div className="pt-6 pb-6 border-t border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
-                <div className="w-11 h-11 rounded-full bg-[#4A3AA8] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                <div className="w-11 h-11 rounded-full bg-[#5B4CF5] text-white flex items-center justify-center font-bold text-sm shadow-xs">
                   {post.author_name.charAt(0)}
                 </div>
                 <div>
@@ -225,7 +225,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   href="https://www.proofdeck.app/signup"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold text-white bg-[#4A3AA8] hover:bg-[#3b2e88] transition-colors no-underline shadow-xs cursor-pointer"
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold text-white bg-[#5B4CF5] hover:bg-[#4433E0] transition-colors no-underline shadow-xs cursor-pointer"
                 >
                   Create Account on ProofDeck &rarr;
                 </a>
@@ -266,7 +266,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   href="https://www.proofdeck.app/signup"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#4A3AA8] hover:bg-slate-100 text-xs sm:text-sm font-bold no-underline shadow-md transition-transform hover:scale-105 cursor-pointer"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#5B4CF5] hover:bg-slate-100 text-xs sm:text-sm font-bold no-underline shadow-md transition-transform hover:scale-105 cursor-pointer"
                 >
                   Continue to ProofDeck & Open Account <ArrowRight size={15} />
                 </a>
@@ -290,7 +290,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                       <div className="mb-2">
                         <CategoryBadge category={rel.category} size="sm" />
                       </div>
-                      <h4 className="font-bold text-slate-900 hover:text-[#4A3AA8] text-sm leading-snug mb-2 line-clamp-2">
+                      <h4 className="font-bold text-slate-900 hover:text-[#5B4CF5] text-sm leading-snug mb-2 line-clamp-2">
                         <Link href={`/${rel.slug}`} className="no-underline text-inherit">
                           {rel.title}
                         </Link>
@@ -301,7 +301,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     </div>
                     <Link
                       href={`/${rel.slug}`}
-                      className="text-xs font-bold text-[#4A3AA8] hover:text-[#3b2e88] inline-flex items-center gap-1 no-underline"
+                      className="text-xs font-bold text-[#5B4CF5] hover:text-[#4433E0] inline-flex items-center gap-1 no-underline"
                     >
                       Read Guide <ArrowRight size={12} />
                     </Link>

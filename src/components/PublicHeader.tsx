@@ -27,7 +27,7 @@ export function PublicHeader({ currentCategory }: HeaderProps) {
               alt="ProofDeck"
               className="w-8 h-8 rounded-lg shadow-2xs group-hover:scale-105 transition-transform"
             />
-            <span className="font-bold text-lg text-slate-900 tracking-tight group-hover:text-[#4A3AA8] transition-colors">
+            <span className="font-bold text-lg text-slate-900 tracking-tight group-hover:text-[#5B4CF5] transition-colors">
               ProofDeck
             </span>
           </Link>
@@ -42,7 +42,7 @@ export function PublicHeader({ currentCategory }: HeaderProps) {
                   href={cat.href}
                   className={`no-underline transition-colors pb-0.5 ${
                     isActive
-                      ? "text-[#4A3AA8] font-bold border-b-2 border-[#4A3AA8]"
+                      ? "text-[#5B4CF5] font-bold border-b-2 border-[#5B4CF5]"
                       : "text-slate-600 hover:text-slate-950 font-medium"
                   }`}
                 >
@@ -67,7 +67,7 @@ export function PublicHeader({ currentCategory }: HeaderProps) {
             href="https://www.proofdeck.app/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-4 py-2 rounded-full text-[13px] font-medium text-white bg-[#4A3AA8] hover:bg-[#3b2e88] transition-all shadow-xs no-underline cursor-pointer"
+            className="inline-flex items-center justify-center px-4 py-2 rounded-full text-[13px] font-medium text-white bg-[#5B4CF5] hover:bg-[#4433E0] transition-all shadow-xs no-underline cursor-pointer"
           >
             Sign Up
           </a>
@@ -126,7 +126,7 @@ export function PublicHeader({ currentCategory }: HeaderProps) {
               href="https://www.proofdeck.app/signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2.5 text-center text-xs font-bold text-white bg-[#4A3AA8] rounded-xl no-underline shadow-xs"
+              className="w-full py-2.5 text-center text-xs font-bold text-white bg-[#5B4CF5] rounded-xl no-underline shadow-xs"
             >
               Sign Up on ProofDeck
             </a>

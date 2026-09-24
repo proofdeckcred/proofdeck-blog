@@ -101,7 +101,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 mb-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#4A3AA8] bg-indigo-50 border border-indigo-100/80 px-3 py-1 rounded-md">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#5B4CF5] bg-indigo-50 border border-indigo-100/80 px-3 py-1 rounded-md">
                   Articles & Insights
                 </span>
                 {total > 0 && (
@@ -136,13 +136,13 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                       href={href}
                       className={`text-sm sm:text-base whitespace-nowrap transition-all pb-2 px-1 relative no-underline ${
                         isCatActive
-                          ? "text-[#4A3AA8] font-bold"
+                          ? "text-[#5B4CF5] font-bold"
                           : "text-slate-500 hover:text-slate-900 font-medium"
                       }`}
                     >
                       {catName}
                       {isCatActive && (
-                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#4A3AA8] rounded-full" />
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#5B4CF5] rounded-full" />
                       )}
                     </Link>
                   );
@@ -156,7 +156,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                   name="search"
                   defaultValue={searchQuery}
                   placeholder="Search articles..."
-                  className="w-full pl-9 pr-4 py-2 text-xs text-slate-900 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A3AA8]/20 focus:border-[#4A3AA8] transition-all"
+                  className="w-full pl-9 pr-4 py-2 text-xs text-slate-900 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#5B4CF5]/20 focus:border-[#5B4CF5] transition-all"
                 />
                 <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 {currentCategory !== "All" && (
@@ -172,7 +172,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {posts.length === 0 ? (
               <div className="py-20 text-center max-w-lg mx-auto bg-white rounded-3xl border border-[#E7E5F0] p-8 sm:p-12 shadow-2xs">
-                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-[#4A3AA8] flex items-center justify-center mx-auto mb-5 border border-indigo-100">
+                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-[#5B4CF5] flex items-center justify-center mx-auto mb-5 border border-indigo-100">
                   <FileText size={26} />
                 </div>
                 <h3 className="text-xl font-bold text-[#0B0B12] mb-2 tracking-tight">
@@ -188,7 +188,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                 {searchQuery || currentCategory !== "All" ? (
                   <Link
                     href="/"
-                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-[#4A3AA8] hover:bg-[#3b2e88] transition-colors no-underline shadow-xs"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-[#5B4CF5] hover:bg-[#4433E0] transition-colors no-underline shadow-xs"
                   >
                     View All Articles
                   </Link>
@@ -197,7 +197,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                     href="https://www.proofdeck.app"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-semibold text-white bg-[#4A3AA8] hover:bg-[#3b2e88] transition-colors no-underline shadow-xs"
+                    className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-semibold text-white bg-[#5B4CF5] hover:bg-[#4433E0] transition-colors no-underline shadow-xs"
                   >
                     Explore ProofDeck Platform &rarr;
                   </a>
@@ -240,7 +240,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                             </span>
                           </div>
 
-                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B0B12] group-hover:text-[#4A3AA8] transition-colors leading-[1.2]">
+                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B0B12] group-hover:text-[#5B4CF5] transition-colors leading-[1.2]">
                             <Link href={`/${featuredPost.slug}`} className="no-underline text-inherit">
                               {featuredPost.title}
                             </Link>
@@ -252,7 +252,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
 
                           <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 rounded-full bg-[#4A3AA8] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                              <div className="w-9 h-9 rounded-full bg-[#5B4CF5] text-white flex items-center justify-center font-bold text-xs shadow-xs">
                                 {featuredPost.author_name.charAt(0)}
                               </div>
                               <div>
@@ -271,7 +271,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
 
                             <Link
                               href={`/${featuredPost.slug}`}
-                              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#4A3AA8] hover:text-[#3b2e88] group-hover:translate-x-0.5 transition-transform no-underline"
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5B4CF5] hover:text-[#4433E0] group-hover:translate-x-0.5 transition-transform no-underline"
                             >
                               Read Guide <ArrowRight size={14} />
                             </Link>
@@ -310,7 +310,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                           </div>
 
                           {/* Card Title */}
-                          <h4 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#4A3AA8] transition-colors mb-2.5 line-clamp-2 leading-snug">
+                          <h4 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#5B4CF5] transition-colors mb-2.5 line-clamp-2 leading-snug">
                             <Link href={`/${post.slug}`} className="no-underline text-inherit">
                               {post.title}
                             </Link>
@@ -350,7 +350,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                             </div>
                             <Link
                               href={`/${post.slug}`}
-                              className="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-indigo-50 text-[#4A3AA8] flex items-center justify-center transition-colors no-underline"
+                              className="w-8 h-8 rounded-full bg-slate-50 group-hover:bg-indigo-50 text-[#5B4CF5] flex items-center justify-center transition-colors no-underline"
                               aria-label="Read article"
                             >
                               <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />

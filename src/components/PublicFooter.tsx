@@ -27,7 +27,7 @@ export function PublicFooter() {
                 href="https://x.com/proofdeck"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#4A3AA8] transition-all no-underline"
+                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#5B4CF5] transition-all no-underline"
                 aria-label="X / Twitter"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
@@ -40,7 +40,7 @@ export function PublicFooter() {
                 href="https://www.linkedin.com/company/proofdeckhq/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#4A3AA8] transition-all no-underline"
+                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#5B4CF5] transition-all no-underline"
                 aria-label="LinkedIn"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
@@ -53,7 +53,7 @@ export function PublicFooter() {
                 href="https://www.youtube.com/@proofdeck"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#4A3AA8] transition-all no-underline"
+                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#5B4CF5] transition-all no-underline"
                 aria-label="YouTube"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current">
@@ -66,7 +66,7 @@ export function PublicFooter() {
                 href="https://instagram.com/proofdeck"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#4A3AA8] transition-all no-underline"
+                className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#5B4CF5] transition-all no-underline"
                 aria-label="Instagram"
               >
                 <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -180,7 +180,7 @@ export function PublicFooter() {
             href="https://www.proofdeck.app/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-7 py-2.5 rounded-full text-sm font-semibold text-white bg-[#4A3AA8] hover:bg-[#3b2e88] transition-all shadow-xs no-underline cursor-pointer"
+            className="inline-flex items-center justify-center px-7 py-2.5 rounded-full text-sm font-semibold text-white bg-[#5B4CF5] hover:bg-[#4433E0] transition-all shadow-xs no-underline cursor-pointer"
           >
             Get started
           </a>

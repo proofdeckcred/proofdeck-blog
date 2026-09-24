@@ -12,7 +12,7 @@ export function CategoryBadge({ category, className = "", size = "md" }: Categor
   let colorClasses = "bg-slate-100 text-slate-700 border-slate-200/80";
 
   if (catLower.includes("how to") || catLower === "how to") {
-    colorClasses = "bg-indigo-50 text-[#4A3AA8] border-indigo-200/60";
+    colorClasses = "bg-indigo-50 text-[#5B4CF5] border-indigo-200/60";
   } else if (catLower.includes("dev") || catLower === "for devs") {
     colorClasses = "bg-emerald-50 text-emerald-700 border-emerald-200/60";
   } else if (catLower.includes("general") || catLower === "general") {

@@ -64,7 +64,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-white text-slate-900 antialiased selection:bg-[#4A3AA8] selection:text-white">
+      <body className="min-h-screen bg-white text-slate-900 antialiased selection:bg-[#5B4CF5] selection:text-white">
         <LenisProvider>
           {children}
         </LenisProvider>

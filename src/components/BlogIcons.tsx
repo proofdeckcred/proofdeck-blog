@@ -3,10 +3,10 @@ import React from "react";
 export function CredentialSealIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
-      <circle cx="24" cy="24" r="22" fill="#4A3AA8" fillOpacity="0.08" stroke="#4A3AA8" strokeWidth="2" strokeDasharray="3 3" />
-      <circle cx="24" cy="24" r="17" fill="#4A3AA8" />
+      <circle cx="24" cy="24" r="22" fill="#5B4CF5" fillOpacity="0.08" stroke="#5B4CF5" strokeWidth="2" strokeDasharray="3 3" />
+      <circle cx="24" cy="24" r="17" fill="#5B4CF5" />
       <path d="M19 24.5L22.5 28L29 20" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M17 38L15 45L24 41L33 45L31 38" fill="#4A3AA8" />
+      <path d="M17 38L15 45L24 41L33 45L31 38" fill="#5B4CF5" />
     </svg>
   );
 }
@@ -18,7 +18,7 @@ export function DevTerminalIcon({ className = "w-6 h-6" }: { className?: string 
       <circle cx="11" cy="14" r="2" fill="#EF4444" />
       <circle cx="17" cy="14" r="2" fill="#F59E0B" />
       <circle cx="23" cy="14" r="2" fill="#10B981" />
-      <path d="M13 25L19 29L13 33" stroke="#4A3AA8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M13 25L19 29L13 33" stroke="#5B4CF5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
       <line x1="23" y1="33" x2="31" y2="33" stroke="#A1A1AA" strokeWidth="2.5" strokeLinecap="round" />
     </svg>
   );
@@ -28,11 +28,11 @@ export function HowToGuideIcon({ className = "w-6 h-6" }: { className?: string }
   return (
     <svg viewBox="0 0 48 48" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
       <rect x="8" y="6" width="32" height="36" rx="6" fill="#F7F7FA" stroke="#E7E5F0" strokeWidth="2" />
-      <rect x="8" y="6" width="6" height="36" rx="2" fill="#4A3AA8" />
+      <rect x="8" y="6" width="6" height="36" rx="2" fill="#5B4CF5" />
       <rect x="18" y="14" width="16" height="3" rx="1.5" fill="#A1A1AA" />
       <rect x="18" y="21" width="14" height="3" rx="1.5" fill="#D4D4D8" />
       <rect x="18" y="28" width="10" height="3" rx="1.5" fill="#E4E4E7" />
-      <circle cx="34" cy="33" r="8" fill="#4A3AA8" />
+      <circle cx="34" cy="33" r="8" fill="#5B4CF5" />
       <path d="M31.5 33L33.5 35L36.5 31" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );

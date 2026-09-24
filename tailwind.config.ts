@@ -13,8 +13,8 @@ const config: Config = {
       },
       colors: {
         pd: {
-          indigo: "#4A3AA8",
-          "indigo-dark": "#3b2e88",
+          indigo: "#5B4CF5",
+          "indigo-dark": "#4433E0",
           ink: "#0B0B12",
           paper: "#F7F7FA",
           "paper-dot": "#E7E7EF",
