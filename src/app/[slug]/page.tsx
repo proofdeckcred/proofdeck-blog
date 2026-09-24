@@ -250,8 +250,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           {/* Mid/End Article CTA Card prompting users to continue to ProofDeck to signup */}
-          <section className="my-14 p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#4A3AA8] via-[#3b2e88] to-slate-950 text-white shadow-2xl relative overflow-hidden text-center">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A3FF]/20 rounded-full blur-3xl pointer-events-none"></div>
+          <section className="my-14 p-8 sm:p-10 rounded-3xl bg-[#0B0B12] text-white shadow-xl relative overflow-hidden text-center border border-slate-800">
             <div className="relative z-10 max-w-xl mx-auto space-y-4">
               <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-200 bg-white/10 px-3 py-1 rounded-md">
                 ProofDeck Credential Platform

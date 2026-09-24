@@ -8,14 +8,20 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', "Inter", "system-ui", "sans-serif"],
+      },
       colors: {
-        brand: {
-          indigo: "#4F46E5",
-          "indigo-dark": "#4338CA",
-          ink: "#0F172A",
-          mute: "#64748B",
-        }
-      }
+        pd: {
+          indigo: "#4A3AA8",
+          "indigo-dark": "#3b2e88",
+          ink: "#0B0B12",
+          paper: "#F7F7FA",
+          "paper-dot": "#E7E7EF",
+          line: "#E7E5F0",
+          mute: "#6B6B7C",
+        },
+      },
     },
   },
   plugins: [],

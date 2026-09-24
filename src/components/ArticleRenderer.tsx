@@ -107,7 +107,7 @@ export function ArticleRenderer({ content = "" }: ArticleRendererProps) {
           return (
             <blockquote
               key={idx}
-              className="relative my-8 p-6 sm:p-7 rounded-2xl border-l-[5px] border-[#4A3AA8] bg-gradient-to-r from-indigo-50/70 via-purple-50/20 to-transparent shadow-xs"
+              className="relative my-8 p-6 sm:p-7 rounded-2xl border-l-[5px] border-[#4A3AA8] bg-slate-50/80 shadow-xs"
             >
               <div className="flex items-start gap-4">
                 <QuoteIcon className="w-8 h-8 text-[#4A3AA8] shrink-0 opacity-80 mt-1" />

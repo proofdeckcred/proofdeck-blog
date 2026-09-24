@@ -2,11 +2,11 @@ import Link from "next/link";
 import { PublicHeader } from "@/components/PublicHeader";
 import { PublicFooter } from "@/components/PublicFooter";
 import { CategoryBadge } from "@/components/CategoryBadge";
-import { CredentialSealIcon, DevTerminalIcon, HowToGuideIcon, YouTubePlayIcon } from "@/components/BlogIcons";
+import { CredentialSealIcon, DevTerminalIcon, HowToGuideIcon } from "@/components/BlogIcons";
 import { fetchPublishedPosts, fetchCategories } from "@/lib/api";
-import { Clock, Calendar, ArrowRight, Search, Play } from "lucide-react";
+import { Clock, Calendar, ArrowRight, Search, FileText } from "lucide-react";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 interface PageProps {
   searchParams?: {
@@ -28,7 +28,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
     fetchCategories(),
   ]);
 
-  // Ensure default categories exist in category nav: General, How to, For devs
+  // Default categories in nav: General, How to, For devs
   const defaultCats = ["General", "How to", "For devs"];
   const allCategoryNames = Array.from(
     new Set(["All", ...defaultCats, ...categoryList.map((c) => c.name)])
@@ -37,26 +37,26 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
   const featuredPost = posts[0];
   const gridPosts = posts.slice(1);
 
-  // Helper to render custom visual token per category if no custom image
+  // Clean solid surfaces per category if article has no featured image
   const renderVisualToken = (category: string) => {
     const c = (category || "").toLowerCase();
     if (c.includes("dev")) {
       return (
-        <div className="w-full h-44 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 flex items-center justify-center border border-slate-800 shadow-inner group-hover:scale-[1.02] transition-transform duration-300">
-          <DevTerminalIcon className="w-20 h-20 drop-shadow-lg" />
+        <div className="w-full h-44 rounded-2xl bg-[#0B0B12] flex items-center justify-center border border-slate-800 shadow-xs group-hover:scale-[1.01] transition-transform duration-300">
+          <DevTerminalIcon className="w-16 h-16" />
         </div>
       );
     }
     if (c.includes("how to")) {
       return (
-        <div className="w-full h-44 rounded-2xl bg-gradient-to-br from-indigo-50 via-purple-50 to-sky-50 flex items-center justify-center border border-indigo-100/70 shadow-inner group-hover:scale-[1.02] transition-transform duration-300">
-          <HowToGuideIcon className="w-20 h-20 drop-shadow-md" />
+        <div className="w-full h-44 rounded-2xl bg-[#F7F7FA] flex items-center justify-center border border-[#E7E5F0] shadow-xs group-hover:scale-[1.01] transition-transform duration-300">
+          <HowToGuideIcon className="w-16 h-16" />
         </div>
       );
     }
     return (
-      <div className="w-full h-44 rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50/60 to-purple-50 flex items-center justify-center border border-blue-100/70 shadow-inner group-hover:scale-[1.02] transition-transform duration-300">
-        <CredentialSealIcon className="w-20 h-20 drop-shadow-md" />
+      <div className="w-full h-44 rounded-2xl bg-[#F7F7FA] flex items-center justify-center border border-[#E7E5F0] shadow-xs group-hover:scale-[1.01] transition-transform duration-300">
+        <CredentialSealIcon className="w-16 h-16" />
       </div>
     );
   };
@@ -71,7 +71,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
       "@type": "Organization",
       "name": "ProofDeck",
       "url": "https://www.proofdeck.app",
-      "logo": "https://www.proofdeck.app/logo.png"
+      "logo": "https://www.proofdeck.app/logo.png",
     },
     "blogPost": posts.map((post) => ({
       "@type": "BlogPosting",
@@ -81,9 +81,9 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
       "description": post.excerpt,
       "author": {
         "@type": "Person",
-        "name": post.author_name
-      }
-    }))
+        "name": post.author_name,
+      },
+    })),
   };
 
   return (
@@ -95,45 +95,32 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
 
       <PublicHeader currentCategory={currentCategory} />
 
-      <main className="flex-1 relative overflow-hidden">
-        {/* Humana-inspired ambient color blend & decorative geometric accent */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-indigo-200/30 via-purple-100/20 to-transparent blur-3xl pointer-events-none -z-10" />
-        <div className="absolute top-20 left-0 w-[400px] h-[400px] bg-gradient-to-br from-sky-200/25 via-blue-100/15 to-transparent blur-3xl pointer-events-none -z-10" />
-
+      <main className="flex-1 relative">
         {/* Hero Section */}
-        <section className="pt-14 sm:pt-20 pb-12 sm:pb-16 pd-dot-grid border-b border-slate-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            {/* Humana Style Decorative Geometric Cubes in Top-Right */}
-            <div className="hidden lg:grid grid-cols-4 gap-2.5 absolute top-2 right-8 opacity-45 pointer-events-none select-none">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4A3AA8]/20 to-[#00A3FF]/30 backdrop-blur-xs"></div>
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00A3FF]/40 to-teal-300/30 backdrop-blur-xs"></div>
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-400/20 to-[#4A3AA8]/30 backdrop-blur-xs"></div>
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4A3AA8]/30 to-indigo-500/40 backdrop-blur-xs"></div>
-              <div className="col-start-2 w-8 h-8 rounded-lg bg-gradient-to-br from-[#00A3FF]/30 to-[#4A3AA8]/20 backdrop-blur-xs"></div>
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-400/30 to-blue-500/40 backdrop-blur-xs"></div>
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4A3AA8]/40 to-[#00A3FF]/30 backdrop-blur-xs"></div>
-            </div>
-
+        <section className="pt-14 sm:pt-20 pb-12 sm:pb-16 pd-dot-grid border-b border-[#E7E5F0]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 mb-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#4A3AA8] bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-md">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#4A3AA8] bg-indigo-50 border border-indigo-100/80 px-3 py-1 rounded-md">
                   Articles & Insights
                 </span>
-                <span className="text-xs font-medium text-slate-400">
-                  {total} published {total === 1 ? "article" : "articles"}
-                </span>
+                {total > 0 && (
+                  <span className="text-xs font-medium text-slate-400">
+                    {total} published {total === 1 ? "article" : "articles"}
+                  </span>
+                )}
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-[1.12] mb-5">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#0B0B12] tracking-tight leading-[1.12] mb-5">
                 Digital Credentialing, Verification & Engineering Guides
               </h1>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
                 In-depth technical guides, tutorials, and security analysis on verifiable credentials, fraud prevention, QR code validation, and REST API automation.
               </p>
             </div>
 
-            {/* Category Navigation Bar (No Pills, Sleek Underline Tabs like Image 1) */}
-            <div className="mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 pt-6 border-t border-slate-200/80">
+            {/* Category Navigation Bar & Search */}
+            <div className="mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 pt-6 border-t border-slate-200">
               <nav className="flex items-center gap-2 sm:gap-6 overflow-x-auto no-scrollbar pb-2 md:pb-0">
                 {allCategoryNames.map((catName) => {
                   const isCatActive =
@@ -147,7 +134,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                     <Link
                       key={catName}
                       href={href}
-                      className={`text-sm sm:text-base font-semibold whitespace-nowrap transition-all pb-2 px-1 relative no-underline ${
+                      className={`text-sm sm:text-base whitespace-nowrap transition-all pb-2 px-1 relative no-underline ${
                         isCatActive
                           ? "text-[#4A3AA8] font-bold"
                           : "text-slate-500 hover:text-slate-900 font-medium"
@@ -169,7 +156,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                   name="search"
                   defaultValue={searchQuery}
                   placeholder="Search articles..."
-                  className="w-full pl-9 pr-4 py-2 text-xs text-slate-900 bg-slate-50/80 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A3AA8]/20 focus:border-[#4A3AA8] transition-all"
+                  className="w-full pl-9 pr-4 py-2 text-xs text-slate-900 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A3AA8]/20 focus:border-[#4A3AA8] transition-all"
                 />
                 <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 {currentCategory !== "All" && (
@@ -184,27 +171,44 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
         <section className="py-12 sm:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {posts.length === 0 ? (
-              <div className="py-16 text-center max-w-md mx-auto">
-                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-[#4A3AA8] flex items-center justify-center mx-auto mb-4 border border-indigo-100">
-                  <Search size={24} />
+              <div className="py-20 text-center max-w-lg mx-auto bg-white rounded-3xl border border-[#E7E5F0] p-8 sm:p-12 shadow-2xs">
+                <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-[#4A3AA8] flex items-center justify-center mx-auto mb-5 border border-indigo-100">
+                  <FileText size={26} />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-1">No articles found</h3>
-                <p className="text-sm text-slate-500 mb-6">
-                  No articles matched your search or category filter. Check back soon for new guides!
+                <h3 className="text-xl font-bold text-[#0B0B12] mb-2 tracking-tight">
+                  {searchQuery || currentCategory !== "All"
+                    ? "No articles found"
+                    : "Articles Coming Soon"}
+                </h3>
+                <p className="text-sm text-slate-500 mb-8 leading-relaxed">
+                  {searchQuery || currentCategory !== "All"
+                    ? "No articles matched your search or category filter. Try clearing the filter."
+                    : "We are currently drafting in-depth guides, case studies, and engineering resources. Check back soon!"}
                 </p>
-                <Link
-                  href="/"
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#4A3AA8] no-underline"
-                >
-                  View All Articles
-                </Link>
+                {searchQuery || currentCategory !== "All" ? (
+                  <Link
+                    href="/"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-[#4A3AA8] hover:bg-[#3b2e88] transition-colors no-underline shadow-xs"
+                  >
+                    View All Articles
+                  </Link>
+                ) : (
+                  <a
+                    href="https://www.proofdeck.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-semibold text-white bg-[#4A3AA8] hover:bg-[#3b2e88] transition-colors no-underline shadow-xs"
+                  >
+                    Explore ProofDeck Platform &rarr;
+                  </a>
+                )}
               </div>
             ) : (
               <>
-                {/* Featured Post Card (Image 1 'Latest News' Style) */}
+                {/* Featured Post Card */}
                 {featuredPost && (
                   <div className="mb-14 sm:mb-18">
-                    <div className="group rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-10 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all duration-300">
+                    <div className="group rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-10 shadow-xs hover:shadow-lg hover:border-indigo-200 transition-all duration-300">
                       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         {/* Left: Media / Illustration */}
                         <div className="lg:col-span-6 relative">
@@ -216,9 +220,8 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                                 className="w-full h-64 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                               />
                             ) : (
-                              <div className="w-full h-64 sm:h-80 bg-gradient-to-br from-indigo-900 via-indigo-950 to-slate-950 flex flex-col items-center justify-center p-8 text-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                                <div className="absolute inset-0 bg-radial-gradient opacity-30"></div>
-                                <CredentialSealIcon className="w-24 h-24 mb-4 drop-shadow-xl" />
+                              <div className="w-full h-64 sm:h-80 bg-[#0B0B12] flex flex-col items-center justify-center p-8 text-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                                <CredentialSealIcon className="w-20 h-20 mb-4" />
                                 <span className="text-xs font-mono font-semibold text-indigo-300 tracking-wider uppercase">
                                   ProofDeck Official Guide
                                 </span>
@@ -237,7 +240,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                             </span>
                           </div>
 
-                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 group-hover:text-[#4A3AA8] transition-colors leading-[1.2]">
+                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B0B12] group-hover:text-[#4A3AA8] transition-colors leading-[1.2]">
                             <Link href={`/${featuredPost.slug}`} className="no-underline text-inherit">
                               {featuredPost.title}
                             </Link>
@@ -279,7 +282,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                   </div>
                 )}
 
-                {/* Grid of Remaining Articles (Humana Card Style) */}
+                {/* Grid of Remaining Articles */}
                 {gridPosts.length > 0 && (
                   <div>
                     <div className="mb-6 flex items-center justify-between">
@@ -295,9 +298,9 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                       {gridPosts.map((post) => (
                         <article
                           key={post.id}
-                          className="group flex flex-col bg-white rounded-3xl border border-slate-200/90 p-6 shadow-2xs hover:shadow-xl hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300"
+                          className="group flex flex-col bg-white rounded-3xl border border-slate-200/90 p-6 shadow-2xs hover:shadow-lg hover:border-indigo-200 hover:-translate-y-0.5 transition-all duration-300"
                         >
-                          {/* Card Top: Category & Reading Time */}
+                          {/* Card Top */}
                           <div className="flex items-center justify-between mb-4">
                             <CategoryBadge category={post.category} size="sm" />
                             <span className="flex items-center gap-1 text-[11px] text-slate-400 font-medium">
@@ -314,7 +317,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                           </h4>
 
                           {/* Card Excerpt */}
-                          <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed mb-6 line-clamp-3">
+                          <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed mb-6 line-clamp-3 font-normal">
                             {post.excerpt}
                           </p>
 
@@ -333,7 +336,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                             </Link>
                           </div>
 
-                          {/* Card Footer: Author + Date + Arrow */}
+                          {/* Card Footer */}
                           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                             <div>
                               <p className="font-semibold text-slate-900 text-xs">{post.author_name}</p>
@@ -360,40 +363,6 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
                 )}
               </>
             )}
-
-            {/* Bottom Humana-inspired CTA Section */}
-            <div className="mt-20 p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#4A3AA8] via-[#3b2e88] to-slate-950 text-white shadow-2xl relative overflow-hidden text-center">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-[#00A3FF]/20 rounded-full blur-3xl pointer-events-none"></div>
-              <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-200 bg-white/10 px-3 py-1 rounded-md">
-                  Verifiable Credentials at Scale
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
-                  Ready to issue tamper-proof certificates?
-                </h3>
-                <p className="text-sm sm:text-base text-indigo-100 leading-relaxed">
-                  Design certificates, bulk import student lists, and issue thousands of tamper-proof credentials with instant QR code verification in minutes.
-                </p>
-                <div className="pt-3 flex flex-wrap items-center justify-center gap-4">
-                  <a
-                    href="https://www.proofdeck.app/signup"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#4A3AA8] hover:bg-slate-100 text-xs sm:text-sm font-bold no-underline shadow-lg transition-transform hover:scale-105"
-                  >
-                    Open Account on ProofDeck &rarr;
-                  </a>
-                  <a
-                    href="https://www.proofdeck.app/features"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold no-underline border border-white/20 transition-colors"
-                  >
-                    Explore Features
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </main>
