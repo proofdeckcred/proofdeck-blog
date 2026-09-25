@@ -63,7 +63,7 @@ export function PublicFooter() {
 
               {/* Instagram */}
               <a
-                href="https://instagram.com/proofdeck"
+                href="https://www.proofdeck.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-indigo-50 hover:text-[#5B4CF5] transition-all no-underline"
