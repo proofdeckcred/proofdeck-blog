@@ -252,9 +252,17 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
 
                           <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 rounded-full bg-[#5B4CF5] text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                                {featuredPost.author_name.charAt(0)}
-                              </div>
+                              {featuredPost.author_avatar ? (
+                                <img
+                                  src={featuredPost.author_avatar}
+                                  alt={featuredPost.author_name}
+                                  className="w-9 h-9 rounded-full object-cover border border-slate-200 shadow-xs"
+                                />
+                              ) : (
+                                <div className="w-9 h-9 rounded-full bg-[#5B4CF5] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                                  {featuredPost.author_name.charAt(0)}
+                                </div>
+                              )}
                               <div>
                                 <p className="text-xs font-bold text-slate-900 leading-tight">
                                   {featuredPost.author_name}
@@ -338,15 +346,28 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
 
                           {/* Card Footer */}
                           <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                            <div>
-                              <p className="font-semibold text-slate-900 text-xs">{post.author_name}</p>
-                              <p className="text-[11px] text-slate-400">
-                                {new Date(post.published_at).toLocaleDateString("en-US", {
-                                  month: "short",
-                                  day: "numeric",
-                                  year: "numeric",
-                                })}
-                              </p>
+                            <div className="flex items-center gap-2.5">
+                              {post.author_avatar ? (
+                                <img
+                                  src={post.author_avatar}
+                                  alt={post.author_name}
+                                  className="w-7 h-7 rounded-full object-cover border border-slate-200 shadow-2xs"
+                                />
+                              ) : (
+                                <div className="w-7 h-7 rounded-full bg-[#5B4CF5] text-white flex items-center justify-center font-bold text-[10px] shadow-2xs">
+                                  {post.author_name.charAt(0)}
+                                </div>
+                              )}
+                              <div>
+                                <p className="font-semibold text-slate-900 text-xs leading-tight">{post.author_name}</p>
+                                <p className="text-[11px] text-slate-400">
+                                  {new Date(post.published_at).toLocaleDateString("en-US", {
+                                    month: "short",
+                                    day: "numeric",
+                                    year: "numeric",
+                                  })}
+                                </p>
+                              </div>
                             </div>
                             <Link
                               href={`/${post.slug}`}

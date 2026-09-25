@@ -205,9 +205,17 @@ export default async function BlogPostPage({ params }: PageProps) {
             {/* Author Card Bar */}
             <div className="pt-6 pb-6 border-t border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
-                <div className="w-11 h-11 rounded-full bg-[#5B4CF5] text-white flex items-center justify-center font-bold text-sm shadow-xs">
-                  {post.author_name.charAt(0)}
-                </div>
+                {post.author_avatar ? (
+                  <img
+                    src={post.author_avatar}
+                    alt={post.author_name}
+                    className="w-11 h-11 rounded-full object-cover border border-slate-200 shadow-xs"
+                  />
+                ) : (
+                  <div className="w-11 h-11 rounded-full bg-[#5B4CF5] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                    {post.author_name.charAt(0)}
+                  </div>
+                )}
                 <div>
                   <div className="flex items-center gap-1.5">
                     <p className="font-bold text-slate-900 text-sm">{post.author_name}</p>
