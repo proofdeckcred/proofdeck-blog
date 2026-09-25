@@ -22,7 +22,36 @@ type ParsedBlock =
   | { type: "heading"; level: number; text: string }
   | { type: "hr" }
   | { type: "list"; listType: "ul" | "ol"; items: string[] }
+  | { type: "table"; headers: string[]; alignments: ("left" | "center" | "right")[]; rows: string[][] }
   | { type: "paragraph"; text: string };
+
+function isTableSeparator(str: string): boolean {
+  const trimmed = str.trim();
+  if (!trimmed.includes("-") || !trimmed.includes("|")) return false;
+  const cleaned = trimmed.replace(/^\|/, "").replace(/\|$/, "");
+  const parts = cleaned.split("|");
+  if (parts.length === 0) return false;
+  return parts.every(p => /^\s*:?-{2,}:?\s*$/.test(p));
+}
+
+function parseTableRow(str: string): string[] {
+  let cleaned = str.trim();
+  if (cleaned.startsWith("|")) cleaned = cleaned.substring(1);
+  if (cleaned.endsWith("|")) cleaned = cleaned.substring(0, cleaned.length - 1);
+  return cleaned.split("|").map(c => c.trim());
+}
+
+function getTableAlignments(sepLine: string): ("left" | "center" | "right")[] {
+  const parts = parseTableRow(sepLine);
+  return parts.map(p => {
+    const trimmed = p.trim();
+    const starts = trimmed.startsWith(":");
+    const ends = trimmed.endsWith(":");
+    if (starts && ends) return "center";
+    if (ends) return "right";
+    return "left";
+  });
+}
 
 function parseMarkdownBlocks(content: string): ParsedBlock[] {
   if (!content) return [];
@@ -142,7 +171,25 @@ function parseMarkdownBlocks(content: string): ParsedBlock[] {
       continue;
     }
 
-    // 9. Regular Paragraph (accumulate until blank line or special syntax)
+    // 9. Markdown Table: | Col 1 | Col 2 |
+    if (line.includes("|") && i + 1 < lines.length && isTableSeparator(lines[i + 1])) {
+      const headers = parseTableRow(rawLine);
+      const alignments = getTableAlignments(lines[i + 1]);
+      const rows: string[][] = [];
+      i += 2;
+      while (i < lines.length) {
+        const cur = lines[i].trim();
+        if (!cur || !cur.includes("|") || cur.startsWith("#") || cur.startsWith("```") || cur.startsWith(">")) {
+          break;
+        }
+        rows.push(parseTableRow(lines[i]));
+        i++;
+      }
+      blocks.push({ type: "table", headers, alignments, rows });
+      continue;
+    }
+
+    // 10. Regular Paragraph (accumulate until blank line or special syntax)
     const paraLines: string[] = [rawLine];
     i++;
     while (
@@ -155,7 +202,9 @@ function parseMarkdownBlocks(content: string): ParsedBlock[] {
       !/^\s*[-*+]\s+/.test(lines[i]) &&
       !/^\s*\d+\.\s+/.test(lines[i]) &&
       !lines[i].trim().match(/^!\[(.*?)\]\((.*?)\)$/) &&
-      !extractYouTubeId(lines[i].trim())
+      !extractYouTubeId(lines[i].trim()) &&
+      !lines[i].trim().startsWith("|") &&
+      !(lines[i].trim().includes("|") && i + 1 < lines.length && isTableSeparator(lines[i + 1]))
     ) {
       paraLines.push(lines[i]);
       i++;
@@ -340,7 +389,56 @@ export function ArticleRenderer({ content = "" }: ArticleRendererProps) {
           );
         }
 
-        // 8. Regular paragraph
+        // 8. Table
+        if (block.type === "table") {
+          return (
+            <div key={idx} className="my-8 overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-sm border-collapse">
+                  <thead>
+                    <tr className="bg-slate-50/90 border-b border-slate-200">
+                      {block.headers.map((h, hIdx) => {
+                        const align = block.alignments[hIdx] || "left";
+                        return (
+                          <th
+                            key={hIdx}
+                            className={`px-4 sm:px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-700 whitespace-nowrap ${
+                              align === "center" ? "text-center" : align === "right" ? "text-right" : "text-left"
+                            }`}
+                            dangerouslySetInnerHTML={{ __html: formatInlineMarkdown(h) }}
+                          />
+                        );
+                      })}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {block.rows.map((row, rIdx) => (
+                      <tr
+                        key={rIdx}
+                        className={rIdx % 2 === 0 ? "bg-white hover:bg-slate-50/70 transition-colors" : "bg-slate-50/40 hover:bg-slate-50/70 transition-colors"}
+                      >
+                        {row.map((cell, cIdx) => {
+                          const align = block.alignments[cIdx] || "left";
+                          return (
+                            <td
+                              key={cIdx}
+                              className={`px-4 sm:px-5 py-3.5 text-slate-700 text-sm leading-relaxed ${
+                                align === "center" ? "text-center" : align === "right" ? "text-right" : "text-left"
+                              }`}
+                              dangerouslySetInnerHTML={{ __html: formatInlineMarkdown(cell) }}
+                            />
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          );
+        }
+
+        // 9. Regular paragraph
         return (
           <p
             key={idx}
